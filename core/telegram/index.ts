@@ -7,14 +7,14 @@ if (!token) throw Error("Telegram token not defined")
 
 const bot = new TelegramBot(token, {polling: true})
 
-const OPENAI_AVAILABLE = false
+const OPENAI_ENABLED = process.env.OPENAI_ENABLED
 
 bot.on("message", (msg) => {
 	const chatId = msg.chat.id
 
 	if (!msg.text) return bot.sendMessage(chatId, "Ничего не введено")
 
-	if (!OPENAI_AVAILABLE) return bot.sendMessage(chatId, "ChatGPT пока отключен")
+	if (!OPENAI_ENABLED) return bot.sendMessage(chatId, "ChatGPT пока отключен")
 
 	openaiTelegramConnector(msg.text, msg.from).then((result) => {
 		bot.sendMessage(chatId, result)
