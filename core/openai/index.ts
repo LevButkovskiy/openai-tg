@@ -13,7 +13,7 @@ export async function openaiTelegramConnector(promt: string, user?: User): Promi
 
 	const chatCompletion = await openai
 		.createChatCompletion({
-			model: "gpt-3.5-turbo-16k-0613",
+			model: "gpt-3.5-turbo-0613",
 			messages: [{role: "user", content: promt}],
 			max_tokens: 1000,
 		})
