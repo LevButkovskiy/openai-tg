@@ -18,7 +18,10 @@ export async function openaiTelegramConnector(promt: string, user?: User): Promi
 			max_tokens: 1000,
 		})
 		.then((res) => res.data.choices[0].message?.content)
-		.catch((e) => e.statusText)
+		.catch((e: Error) => {
+			console.error("openaiTelegramConnector ERROR", e)
+			return e.message
+		})
 
 	console.log(promt, user.id, user.username, chatCompletion)
 
