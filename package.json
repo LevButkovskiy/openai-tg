@@ -1,0 +1,23 @@
+{
+	"name": "openai-tg",
+	"version": "1.0.0",
+	"description": "openai api with tg bot",
+	"main": "index.js",
+	"repository": "https://github.com/LevButkovskiy/openai-tg",
+	"author": "Lev Butkovskiy",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv-flow": "^3.2.0",
+		"node-telegram-bot-api": "^0.61.0",
+		"openai": "^3.3.0",
+		"ts-node": "^10.9.1"
+	},
+	"scripts": {
+		"start": "ts-node -r dotenv-flow/config index.ts"
+	},
+	"devDependencies": {
+		"@types/node": "^20.3.1",
+		"@types/node-telegram-bot-api": "^0.61.6",
+		"tslib": "^2.5.3"
+	}
+}
