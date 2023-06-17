@@ -11,15 +11,17 @@ export async function openaiTelegramConnector(promt: string, user?: User): Promi
 
 	console.log(promt, user.id, user.username)
 
-	const chatCompletion = await openai.createChatCompletion({
-		model: "gpt-3.5-turbo-16k-0613",
-		messages: [{role: "user", content: promt}],
-		max_tokens: 1000,
-	})
+	const chatCompletion = await openai
+		.createChatCompletion({
+			model: "gpt-3.5-turbo-16k-0613",
+			messages: [{role: "user", content: promt}],
+			max_tokens: 1000,
+		})
+		.then((res) => res.data.choices[0].message?.content)
+		.catch((e) => e.statusText)
 
-	const result = chatCompletion.data.choices[0].message?.content
-	console.log(promt, user.id, user.username, result)
+	console.log(promt, user.id, user.username, chatCompletion)
 
-	if (!result) return "Error"
-	return result
+	if (!chatCompletion) return "Error"
+	return chatCompletion
 }
